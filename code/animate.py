@@ -25,7 +25,7 @@ def get_car_color_label(type):
 
     return color, label
 
-def create_patches_from_frame(frame_id):
+def create_patches_from_frame(frame_id, dataset):
     """ Returns  two lists
     1) a list of rectangular patches representing the cars in a specific
     frame; patches are drawn on the plot
@@ -34,7 +34,7 @@ def create_patches_from_frame(frame_id):
     patches_list = []
     id_list = []
 
-    frame = car_functions.create_frame(frame_id, train[1])
+    frame = car_functions.create_frame(frame_id, dataset)
     cars = frame.get_cars()
     for car in cars:
         color, label = get_car_color_label(car.get_type())
@@ -73,14 +73,14 @@ def plot_road_border():
 
     return plt
 
-def generate_frame_imgs(frames, img_dir_path):
+def generate_frame_imgs(frames, img_dir_path, dataset):
     """ creates and saves a set of images representing a raneg of frames in NGSIM dataset
     A single image is a plot of cars at given locations as found in the dataset for a given frame"""
     for frame in frames:
         fig, ax = set_up_fig_axs()
         plot_road_border()
 
-        patches_list, id_list = create_patches_from_frame(frame)
+        patches_list, id_list = create_patches_from_frame(frame, dataset)
         plt.title('frame ' + str(frame) + ' number of cars = ' + str(len(patches_list)))
         plt.xlabel('longitudinal position in feet')
         plt.ylabel('Lateral position in feet')
@@ -113,8 +113,8 @@ if __name__ == '__main__':
 
     train = dataset_functions.load_dataset()
     # spicify the range of frames you want to visualize
-    frames = range(200, 600)
-    generate_frame_imgs(frames, img_dir_path)
+    frames = range(200, 550)
+    generate_frame_imgs(frames, img_dir_path, train[1])
 
     imgs_to_gif(img_dir_path, animation_file_name, frames)
     shutil.rmtree(img_dir_path)
