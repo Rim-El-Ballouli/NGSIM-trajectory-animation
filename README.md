@@ -1,3 +1,3 @@
 # NGSIM-trajectory-animation
 
-![](animation.gif)
+![](animate.gif)
