@@ -82,6 +82,8 @@ def generate_frame_imgs(frames, img_dir_path):
 
         patches_list, id_list = create_patches_from_frame(frame)
         plt.title('frame ' + str(frame) + ' number of cars = ' + str(len(patches_list)))
+        plt.xlabel('longitudinal position in feet')
+        plt.ylabel('Lateral position in feet')
 
         for patch, id in zip(patches_list, id_list):
             if (patch.get_x() < 795): #restrict drawing to the size of chart
