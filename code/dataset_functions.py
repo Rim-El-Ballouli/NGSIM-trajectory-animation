@@ -2,7 +2,7 @@ import pandas as pd
 
 def load_dataset():
     # specify the path to the input NGSIM dataset and the path to the output smoothed dataset
-    path_to_dataset = 'C:/Users/relballouli/PycharmProjects/helloworld/trajectory/dataset/'
+    path_to_dataset = 'dataset/'
 
     # change the file names as needed
     file_name1 = '0750_0805_us101.csv'
